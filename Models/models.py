@@ -98,7 +98,7 @@ for model_name, model in models.items():
         importances = np.abs(best_model.coef_[0])
     else:
         X_perm_sample, y_perm_sample = resample(X_train_scaled, y_train, n_samples=5000, stratify=y_train, random_state=42)
-        perm_result = permutation_importance(best_model, X_perm_sample, y_perm_sample, n_repeats=5, random_state=42, scoring='f1', n_jobs=-1)
+        perm_result = permutation_importance(best_model, X_perm_sample, y_perm_sample, n_repeats=5, random_state=42, scoring='average_precision', n_jobs=-1)
         importances = perm_result.importances_mean
 
     feature_importance_values[model_name] = importances
